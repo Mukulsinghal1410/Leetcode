@@ -13,45 +13,29 @@
  *     }
  * }
  */
-public class BSTIterator {
-    
-    private Stack<TreeNode> stack;
-    public BSTIterator(TreeNode root) {
-        stack = new Stack<>();
-        TreeNode cur = root;
-        while(cur != null){
-            stack.push(cur);
-            if(cur.left != null)
-                cur = cur.left;
-            else
-                break;
-        }
-    }
-
-    /** @return whether we have a next smallest number */
-    public boolean hasNext() {
-        return !stack.isEmpty();
-    }
-
-    /** @return the next smallest number */
-    public int next() {
-        TreeNode node = stack.pop();
-        TreeNode cur = node;
-        // traversal right branch
-        if(cur.right != null){
-            cur = cur.right;
-            while(cur != null){
-                stack.push(cur);
-                if(cur.left != null)
-                    cur = cur.left;
-                else
-                    break;
-            }
-        }
-        return node.val;
-    }
+class BSTIterator {
+	Stack<TreeNode> stack;
+	public BSTIterator(TreeNode root) {
+		stack = new Stack<>();
+		TreeNode node = root;
+		updateStack(node);                                      // update stack
+	}
+	public int next() {
+		TreeNode toRemove = stack.pop();
+		updateStack(toRemove.right);                             // before return node, first update stack further        
+		return toRemove.val;
+	}
+	public boolean hasNext() {
+		return !stack.isEmpty();    
+	}
+	// -------------------
+	public void updateStack(TreeNode node){
+		while(node != null){
+			stack.add(node);
+			node = node.left;
+		}
+	}
 }
-
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator obj = new BSTIterator(root);
