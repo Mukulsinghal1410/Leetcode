@@ -22,7 +22,7 @@ class BSTIterator {
 	}
 	public int next() {
 		TreeNode toRemove = stack.pop();
-		updateStack(toRemove.right);                             // before return node, first update stack further        
+		updateStack(toRemove.right);                      // before return node, first update stack further        
 		return toRemove.val;
 	}
 	public boolean hasNext() {
