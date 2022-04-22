@@ -1,19 +1,30 @@
 class MyHashMap {
     int[] map;
+    int size = 1;
     public MyHashMap() {
-        map = new int[1000000+1];
+        map = new int[size];
+        Arrays.fill(map, -1);
     }
     
     public void put(int key, int value) {
-        map[key] = value+1;
+        if (key >= size) {
+            int[] newMap = new int[key + size + 1];
+            Arrays.fill(newMap, -1);
+            System.arraycopy(map, 0, newMap, 0, size);
+            size = newMap.length;
+            map = newMap;
+        }
+        map[key] = value;
     }
     
     public int get(int key) {
-        return map[key]-1;
+        if (key >= size) return -1;
+        return map[key];
     }
     
     public void remove(int key) {
-        map[key] = 0;
+        if (key >= size) return;
+        map[key] = -1;
     }
 }
 
