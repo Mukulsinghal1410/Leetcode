@@ -1,19 +1,29 @@
 class MyHashMap {
-    int[] map;
+    
+    HashMap<Integer,Integer> hash;
+
     public MyHashMap() {
-        map = new int[1000000+1];
+        
+        this.hash = new HashMap<>();
+        
     }
     
     public void put(int key, int value) {
-        map[key] = value+1;
+        this.hash.put(key,value);
     }
     
     public int get(int key) {
-        return map[key]-1;
+        if(this.hash.containsKey(key)){
+            return this.hash.get(key);
+        }else{
+            return -1;
+        }
     }
     
     public void remove(int key) {
-        map[key] = 0;
+        if(this.hash.containsKey(key)){
+            this.hash.remove(key);
+        }
     }
 }
 
