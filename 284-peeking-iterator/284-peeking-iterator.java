@@ -1,34 +1,44 @@
 // Java Iterator interface reference:
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
 
-class PeekingIterator implements Iterator<Integer> {
-	private Iterator<Integer> iterator;
-	private Integer curr;
-	private boolean next;
-
-	public PeekingIterator(Iterator<Integer> iterator) {
-		this.iterator = iterator;
-		prepareNext();
+class PeekingIterator implements Iterator<Integer>
+{
+    private Queue<Integer> ele;
+	public PeekingIterator(Iterator<Integer> iterator)
+    {
+	    ele = new LinkedList<>();
+		
+		// Adding elements to queue
+        convert(iterator);
 	}
-
-	private void prepareNext() {
-	    next = iterator.hasNext();
-	    curr = next ? iterator.next() : null;
+	
+	public Integer peek()
+    {
+        return this.ele.peek();
 	}
-
-	public Integer peek() {
-		return curr;
-	}
-
+	
 	@Override
-	public Integer next() {
-		Integer val = curr;
-		prepareNext();
-		return val;
+	public Integer next()
+    {
+	    return this.ele.remove();
 	}
-
+	
 	@Override
-	public boolean hasNext() {
-		return next;
+	public boolean hasNext()
+    {
+	    if(this.ele.size() > 0)
+        {
+            return true;
+        }
+        return false;
 	}
+    
+	// Converting Iterator to Queue
+    private void convert(Iterator<Integer> iterator)
+    {
+        while(iterator.hasNext())
+        {
+            ele.add(iterator.next());
+        }
+    }
 }
