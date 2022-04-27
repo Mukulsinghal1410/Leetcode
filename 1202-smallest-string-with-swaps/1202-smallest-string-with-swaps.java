@@ -1,36 +1,36 @@
+class UF {
+  public UF(int n) {
+    id = new int[n];
+    for (int i = 0; i < n; ++i)
+      id[i] = i;
+  }
+
+  public void union(int u, int v) {
+    id[find(u)] = find(v);
+  }
+
+  public int find(int u) {
+    return id[u] == u ? u : (id[u] = find(id[u]));
+  }
+
+  private int[] id;
+}
+
 class Solution {
-    
-    int findPar(int u, int par[]){
-        if(par[u]==u) return u;
-        return par[u] = findPar(par[u],par);
-    }
-    
-    void union(int u, int v, int par[], int rank[]){
-        u = findPar(u,par);
-        v = findPar(v,par);
-        if(rank[u]>rank[v]){
-            par[v] = u;
-        }else if(rank[v]>rank[u]){
-            par[u] = v;
-        }else{
-            par[u] = v;
-            rank[v]++;
-        }
-    }
-    
-    public String smallestStringWithSwaps(String s, List<List<Integer>> pairs) {
-        int n = s.length();
-        int par[] = new int[n];
-        for(int i=0;i<n;i++) par[i] = i;
-        int rank[] = new int[n];
-        for(List<Integer> lst: pairs) union(lst.get(0),lst.get(1),par,rank);
-        Map<Integer,PriorityQueue<Character>> map = new HashMap<>();
-        for(int i=0;i<n;i++){
-            if(!map.containsKey(findPar(i,par))) map.put(findPar(i,par),new PriorityQueue<>());
-            map.get(findPar(i,par)).offer(s.charAt(i));
-        }
-        String ans = "";
-        for(int i=0;i<n;i++) ans += map.get(findPar(i,par)).poll();
-        return ans;
-    }
+  public String smallestStringWithSwaps(String s, List<List<Integer>> pairs) {
+    StringBuilder ans = new StringBuilder();
+    UF uf = new UF(s.length());
+    Map<Integer, Queue<Character>> map = new HashMap<>();
+
+    for (List<Integer> pair : pairs)
+      uf.union(pair.get(0), pair.get(1));
+
+    for (int i = 0; i < s.length(); ++i)
+      map.computeIfAbsent(uf.find(i), k -> new PriorityQueue<>()).offer(s.charAt(i));
+
+    for (int i = 0; i < s.length(); ++i)
+      ans.append(map.get(uf.find(i)).poll());
+
+    return ans.toString();
+  }
 }
