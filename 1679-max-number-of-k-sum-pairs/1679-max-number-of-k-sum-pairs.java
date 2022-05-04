@@ -1,19 +1,16 @@
-class Solution
-{
-  public int maxOperations(int[] nums, int k) 
-    {
-        Map<Integer, Integer> map = new HashMap<>();
-        int count = 0;
-
-        for (int num : nums) {
-            int diffVal = k - num;
-            if (map.containsKey(diffVal) && map.get(diffVal) > 0) {
-                count++;
-                map.merge(diffVal, -1, Integer::sum);
-            } else {
-                map.merge(num, 1, Integer::sum);
-            }
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+     int i = 0, j = nums.length - 1, count = 0;
+      Arrays.sort(nums);
+      while(i < j) {
+        if(nums[i] + nums[j] == k) {
+          count ++;
+          i ++;
+          j --;
         }
-        return count;
+        else if(nums[i] + nums[j] < k) i ++;
+        else j --;
+      }
+      return count;
     }
 }
