@@ -24,13 +24,22 @@ class GFG
 
 class Solution
 {
-   static String stringPartition(String S, int a, int b){
-    
-     for(int i=1;i<S.length();i++){
-            if ((Integer.parseInt(S.substring(0,i)))%a==0 && (Integer.parseInt(S.substring(i)))%b==0){
-                return String.format(S.substring(0,i) +" "+ S.substring(i));
-            }
-        }
+   static String stringPartition(String str, int a, int b)
+   {
+       
+    int n=str.length();
+       
+       for(int i=1;i<n;i++){
+           int num3=Integer.parseInt(str.substring(i,n));
+           int num2=Integer.parseInt(str.substring(0,i));
+           if(num2%a==0&&num3%b==0){
+               String ans=str.substring(0,i);
+               ans+=" ";
+               ans+=str.substring(i,n);
+               // System.out.println(i+" "+(n-i));
+               return ans;
+           }
+       }
        return "-1";
    }
 }
