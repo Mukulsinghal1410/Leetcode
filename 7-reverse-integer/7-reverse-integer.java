@@ -1,19 +1,18 @@
-class Solution {
+class Solution 
+{
 
-    public int reverse(int x)
+    public int reverse(int x) 
     {
-        int result = 0;
-        while (x != 0)
-        {
-            int tail = x % 10;
-            int newResult = result * 10 + tail;
-            if ((newResult - tail) / 10 != result)
-            {
-              return 0; 
-            }
-            result = newResult;
-            x = x / 10;
-        }
-        return result;
+      double ans =  0;
+      while(x!=0)
+      {
+        double rem = x%10;
+        ans = ans*10+rem;
+        if(ans >=Integer.MAX_VALUE || ans<=Integer.MIN_VALUE ) 
+          return 0;
+        x =x/10;
+        
+       }
+      return (int) ans;
     }
 }
