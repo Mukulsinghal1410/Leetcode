@@ -32,12 +32,15 @@ class GFG{
 
 //User function Template for Java
 
-class Solution{
+class Solution
+{
     static int nthItem(int L1, int L2, int A[], int B[], int N)
     {
         HashSet<Integer> hs=new HashSet<>();
-        for(int i=0;i<L2;i++){
-            for(int j=0;j<L1;j++){
+        for(int i=0;i<L2;i++)
+        {
+            for(int j=0;j<L1;j++)
+            {
                 hs.add(A[j]+B[i]);
             }
         }
@@ -47,6 +50,5 @@ class Solution{
             return list.get(N-1);
         }
         return -1;
-        // code here
     }
 }
