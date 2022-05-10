@@ -28,23 +28,27 @@ class GFG
 }
 // } Driver Code Ends
 
-
-//User function Template for Java
-
 class Solution
 {
-    
+    void formPreOrder(int i,int j,List<Integer> arr,int[] nums){
+        if(i<=j){
+            int x=i+((j-i)/2);
+            arr.add(nums[x]);
+            if(i!=j){
+                formPreOrder(i,x-1,arr,nums);
+                formPreOrder(x+1,j,arr,nums);
+            }
+        }
+    }
     public int[] sortedArrayToBST(int[] nums)
     {
-     List<Integer> ls=new ArrayList<>();
-     getBST(ls,nums,0,nums.length-1);
-     return ls.stream().mapToInt(i->i).toArray();
-    }
-    public void getBST(List<Integer> ls,int[]nums,int left,int right){
-        if(right<left) return;
-        int mid=left+(right-left)/2;
-        ls.add(nums[mid]);
-        getBST(ls,nums,left,mid-1);
-        getBST(ls,nums,mid+1,right);
+        int n=nums.length;
+        List<Integer> arr=new ArrayList<>();
+        formPreOrder(0,n-1,arr,nums);
+        int[] ans=new int[n];
+        for(int i=0;i<n;i++){
+            ans[i]=arr.get(i);
+        }
+        return ans;
     }
 }
