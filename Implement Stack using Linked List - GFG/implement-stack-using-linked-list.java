@@ -54,7 +54,8 @@ class MyStack
    {
        // Add your code here
        StackNode temp=new StackNode(a);
-       if(top==null){
+       if(top==null)
+       {
            top=temp;
            return;
        }
@@ -66,7 +67,8 @@ class MyStack
    int pop() 
    {
        // Add your code here
-       if(top==null){
+       if(top==null)
+       {
            return -1;
        }
        
