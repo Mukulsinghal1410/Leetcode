@@ -1,4 +1,5 @@
-class Solution {
+class Solution 
+{
     public List<String> generateParenthesis(int n) 
     {
       List<String> list = new ArrayList<>();
@@ -6,24 +7,23 @@ class Solution {
 		  return list;
       
     }
-  public static void Generate(int n, int opening, int closing, String ans, List<String> list) 
-  {
-
-		if(opening==n && closing==n) 
+    public static void Generate(int n, int opening, int closing, String ans, List<String> list) 
     {
-			list.add(ans);
-			return;
-		}
+      if(opening==n && closing==n) 
+      {
+			  list.add(ans);
+			  return;
+		  }
 
 
-		if(opening<n) 
-    {
-			Generate(n, opening+1, closing, ans+"(",list);
-		}
+		  if(opening<n) 
+      {
+        Generate(n, opening+1, closing, ans+"(",list);
+		  }
 
-		if(closing<opening) 
-    {
-			Generate(n, opening, closing+1, ans+")",list);
-		}
-	}
+		  if(closing<opening) 
+      {
+			  Generate(n, opening, closing+1, ans+")",list);
+		  }
+	  }
 }
