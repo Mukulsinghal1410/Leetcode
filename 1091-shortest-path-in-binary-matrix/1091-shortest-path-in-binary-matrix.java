@@ -1,56 +1,41 @@
 class Solution {
-   class Pair{
-    int x;
-    int y;
-    int count;
-    
-    Pair(int x, int y, int count){
-        this.x = x;
-        this.y = y;
-        this.count = count;
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        
+        //initialization for 8 directions, a map(map is the name, it is a Queue for BFS) and row-column boundaries
+        int[][] dir = {{1,1},{1,0},{0,1},{1,-1},{-1,1},{-1,0},{0,-1},{-1,-1}};
+        Queue<int[]> map =new LinkedList<>();
+        int rMax = grid.length;
+        int cMax = grid[0].length;
+        
+        //if start point is blocked, return -1, otherwise give map the start point
+        if(grid[0][0]==1) return -1; 
+        
+        //first two parameters are coordinates, third keep track of the distance
+        map.offer(new int[] {0,0,1});
+        
+        while(!map.isEmpty()){
+            //get current coordinates and distance travelled
+            int[] location = map.poll();
+            int r = location[0];
+            int c = location[1];
+            int distance = location[2];
+            
+            //return if reaches the destination
+            if(r==rMax-1 && c==cMax-1) return distance;
+            
+            //search 8 directions for unexplored points around current point
+            for(int[] d : dir){
+                int r2 = r + d[0];
+                int c2 = c + d[1];
+                if(r2<rMax && r2>=0 && c2<cMax && c2>=0 && grid[r2][c2]==0){
+                    //add unexplored point to map and increment distance by 1
+                    map.offer(new int[] {r2,c2,distance+1});
+					//set this point to 1 as explored
+                    grid[r2][c2] = 1;
+                }
+            }
+        }   
+        // whole space searched, cannot reach destination
+        return -1;
     }
-}
-
-
-public int shortestPathBinaryMatrix(int[][] grid) {
-    
-    return BFS(grid, 0, 0, grid.length-1, grid[0].length-1);
-    
-}
-
-
-public int BFS(int grid[][], int start_x, int start_y , int target_x, int target_y){
-    
-    Queue<Pair> q = new LinkedList<>();
-  
-    q.add(new Pair(start_x, start_y, 1));
-    
-    while(q.size()>0){
-        
-        Pair rem = q.remove();
-        int x = rem.x;
-        int y = rem.y;
-        int count = rem.count;
-       
-if(x>=0 && y>=0 && x<grid.length && y<grid[0].length && grid[x][y]!=1 ){
-        
-        grid[x][y] = 1;
-            
-        if(x==target_x && y== target_y)
-            return rem.count;
-        
-        q.add(new Pair(x-1, y, count+1 ));
-        q.add(new Pair(x-1, y+1, count+1));
-        q.add(new Pair(x, y+1 , count+1));
-        q.add(new Pair(x+1, y+1, count+1));
-        q.add(new Pair(x+1, y, count+1));
-        q.add(new Pair(x+1, y-1, count+1));
-        q.add(new Pair(x, y-1, count+1));
-        q.add(new Pair(x-1, y-1, count+1));
-            
-      }
-
-   }
-    return -1;
-}
 }
