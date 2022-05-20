@@ -41,26 +41,30 @@ class GFG{
 
 class Solution 
 { 
-   static int[] farNumber(int N, int arr[])
-    {    
-        int l=0;
-       int h=N-1;
-       int [] res = new int[N];
-       Arrays.fill(res,-1);
-       while(l<=h){
-           if(arr[l]>arr[h]){
-               res[l]=h;
-               l++;
-               h=N-1;
-           }else{
-               h--;
-           }
-
-           if(h==l){
-               l++;
-               h=N-1;
-           }
-       }
-       return res;
-}
+    static int[] farNumber(int N, int arr[])
+	{
+	    int first = 0;
+	    int last = N-1;
+	    int[] res = new int[N];
+	    Arrays.fill(res,-1);
+	    while(last>=first)
+	    {
+	        if(arr[first]>arr[last])
+	        {
+	            res[first] = last;
+	            first++;
+	            last = N-1;
+	        }
+	        else
+	        {
+	            last--;
+	        }
+	        if(first == last)
+	        {
+	            first++;
+	            last = N-1;
+	        }
+	    }
+	    return res;
+	}
 } 
