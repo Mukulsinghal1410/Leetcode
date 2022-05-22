@@ -35,19 +35,24 @@ class GFG {
 
 //User function Template for Java
 
-class Solution {
-    static String findAndReplace(String s, int Q, int[] index, String[] sources, String[] targets) {
+class Solution 
+{
+    static String findAndReplace(String s, int Q, int[] index, String[] sources, String[] targets) 
+    {
         String ans="";
         int last=0;
-        for(int i=0;i<Q;i++){
+        for(int i=0;i<Q;i++)
+        {
             ans+=s.substring(last,index[i]);
             last=index[i];
             
-            if(sources[i].equals(s.substring(index[i],index[i]+sources[i].length()))){
+            if(sources[i].equals(s.substring(index[i],index[i]+sources[i].length())))
+            {
                 ans+=targets[i];
                 last+=sources[i].length();
             }
-        }ans+=s.substring(last);
+        }
+        ans+=s.substring(last);
         return ans;
     }
 };
