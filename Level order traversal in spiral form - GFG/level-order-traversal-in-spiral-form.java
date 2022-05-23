@@ -134,34 +134,43 @@ class Spiral
 {
    //Function to return a list containing the level order 
    //traversal in spiral form. 
-    ArrayList<Integer> a=new ArrayList<Integer>();
+   ArrayList<Integer> a=new ArrayList<Integer>();
    ArrayList<Integer> findSpiral(Node root) 
-   {   if(root==null) return a;
-     int h=height(root);
-     for(int i=1;i<=h;i++){
-       spiral(root,i,i);
-     }    
+   {
+        if(root==null) 
+            return a;
+        int h=height(root);
+        for(int i=1;i<=h;i++)
+        {
+            spiral(root,i,i);
+        }    
        return a;
        
-   }
-   void spiral(Node root,int i,int j){
-       if(root==null) return;
-       else{
-           if(i==1) a.add(root.data);
-           else{
-               if(j%2==0){
-                   spiral(root.left,i-1,j);
-                   spiral(root.right,i-1,j);
-               }
-               else
-               {
-                   spiral(root.right,i-1,j);
-                   spiral(root.left,i-1,j);
-               }
+    }
+    void spiral(Node root,int i,int j)
+    {
+        if(root==null) 
+            return;
+        else
+        {
+            if(i==1) 
+                a.add(root.data);
+            else
+            {
+                if(j%2==0)
+                {
+                    spiral(root.left,i-1,j);
+                    spiral(root.right,i-1,j);
+                }
+                else
+                {
+                    spiral(root.right,i-1,j);
+                    spiral(root.left,i-1,j);
+                }
                    
-               }
-           }
-       }
+            }
+        }
+    }
    int height(Node root){
        if (root==null) return 0;
        return 1+Math.max(height(root.left),height(root.right));
