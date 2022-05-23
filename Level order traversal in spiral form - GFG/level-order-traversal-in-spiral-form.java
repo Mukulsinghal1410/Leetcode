@@ -153,7 +153,8 @@ class Spiral
                    spiral(root.left,i-1,j);
                    spiral(root.right,i-1,j);
                }
-               else{
+               else
+               {
                    spiral(root.right,i-1,j);
                    spiral(root.left,i-1,j);
                }
