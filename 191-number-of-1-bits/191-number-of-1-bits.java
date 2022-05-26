@@ -3,10 +3,12 @@ public class Solution {
    public int hammingWeight(int n) 
    {
     int ans=0;
-    while(n!=0)
-    {
-        n=n&(n-1);
-        ans++;
+    String temp = Integer.toBinaryString(n);
+    int len=temp.length();
+    for(int i=0;i<len;++i){
+        if(temp.charAt(i)=='1'){
+             ans++;
+        }
     }
     return ans;
   }
