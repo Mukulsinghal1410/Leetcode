@@ -1,15 +1,12 @@
 class Solution {
     public boolean hasAllCodes(String s, int k) {
-        Set<Integer> set= new HashSet<>();
-        for(int i=0;i<=s.length()-k;i++)
-        { 
-          set.add(Integer.parseInt(s.substring(i,i+k),2));// Converting into decimal and then adding it to set.
+       Set<String> codesSet = new HashSet<>();
+        int i = 0, j = 0;
+        while(i<=s.length() && i+k<=s.length()){
+            j = i+k;
+            codesSet.add(s.substring(i, j));
+            i++;
         }
-        for(int i=0;i<Math.pow(2,k);i++)// checking if all elements are present or not
-        {
-            if(!set.contains(i))
-                return false;
-        }
-        return true;
+        return codesSet.size() == (int)Math.pow(2,k);
     }
 }
