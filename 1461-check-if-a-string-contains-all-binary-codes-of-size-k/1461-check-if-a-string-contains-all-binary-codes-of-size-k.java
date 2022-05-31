@@ -1,17 +1,15 @@
-class Solution 
-{
-    public boolean hasAllCodes(String s, int k) 
-    {
-        Set<String> st = new HashSet<>();
-        int l = 0, r = k-1;
-        while(r<s.length())
-        {
-            String ss  = s.substring(l,r+1);
-            st.add(ss);
-            l++;r++;
+class Solution {
+    public boolean hasAllCodes(String s, int k) {
+        Set<Integer> set= new HashSet<>();
+        for(int i=0;i<=s.length()-k;i++)
+        { 
+          set.add(Integer.parseInt(s.substring(i,i+k),2));// Converting into decimal and then adding it to set.
         }
-        for(var v  :st)
-            System.out.println(v);
-        return (st.size() == Math.pow(2,k));
+        for(int i=0;i<Math.pow(2,k);i++)// checking if all elements are present or not
+        {
+            if(!set.contains(i))
+                return false;
+        }
+        return true;
     }
 }
