@@ -106,22 +106,24 @@ class Solution
 {
     public TNode sortedListToBST(LNode head)
     {
-          if (head == null) return null;
-          if(head.next == null ) return new TNode(head.data);
+        if (head == null) 
+            return null;
+        if(head.next == null ) 
+            return new TNode(head.data);
           
           
-          LNode fast=head, slow=head, prev = null;
-          while( fast !=null &&  fast.next != null)
-          {
-              fast = fast.next.next;
-              prev = slow;
-              slow = slow.next;
-          }
-          prev.next = null;
-          TNode root = new TNode(slow.data);
-          root.left = sortedListToBST(head);
-          root.right = sortedListToBST(slow.next);
+        LNode fast=head, slow=head, prev = null;
+        while( fast !=null &&  fast.next != null)
+        {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+        prev.next = null;
+        TNode root = new TNode(slow.data);
+        root.left = sortedListToBST(head);
+        root.right = sortedListToBST(slow.next);
           
-          return root;
+        return root;
     }
 }
