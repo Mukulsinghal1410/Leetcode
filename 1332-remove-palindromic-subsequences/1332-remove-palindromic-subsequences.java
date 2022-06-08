@@ -1,21 +1,17 @@
 class Solution 
 {
-    public boolean isPalindrome(String s)
+    public int removePalindromeSub(String str) 
     {
-        int n = s.length();
-        for(int i = 0; i < n / 2; i++){
-            if(s.charAt(i) != s.charAt(n - 1 - i)){
-                return false;
-            }
-        }
-        return true;
-    }
-    public int removePalindromeSub(String s) 
-    {
-        int n = s.length();
-        if(n == 0){
-            return 0;
-        }
-        return isPalindrome(s) ? 1 : 2;
+      if(str==null || str.length()==0)
+          return 0;
+        
+      int r=0;
+      int l=str.length()-1;
+      while(r<l)
+      {
+          if(!(str.charAt(r++)==str.charAt(l--)))
+              return 2;
+      }
+      return 1;
     }
 }
