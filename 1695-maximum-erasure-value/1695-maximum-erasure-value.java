@@ -1,29 +1,27 @@
-class Solution 
-{
-    public int maximumUniqueSubarray(int[] nums) 
-    {
-        Set<Integer> set = new HashSet<>();
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) {
         
-        int start = 0, n = nums.length, sum = 0, answer = -1;
+        Set<Integer> set =  new HashSet();
         
-        for(int end = 0; end < n; end++) 
-        {
-            // If the window has duplicate elements then shrink the window from the left
-            if(set.contains(nums[end])) {
-                while(set.contains(nums[end])) 
-                {
-                    sum -= nums[start];
-                    set.remove(nums[start]);
-                    start++;
-                }
+      int sum =0, ans =0;
+        int j = 0;
+        
+        int i = 0;
+        
+        while(i<nums.length && j<nums.length){
+            
+            if(!set.contains(nums[j])){
+                
+                sum+=nums[j];
+                ans = Math.max(sum,ans);
+                set.add(nums[j++]);
+            }else{
+                
+                sum = sum-nums[i];
+                set.remove(nums[i++]);
             }
-            // Expand the window from the right
-            set.add(nums[end]);
-            sum += nums[end];
-            // Calculate the max window sum
-            answer = Math.max(answer, sum);
         }
-        
-        return answer;
+
+        return ans;
     }
 }
