@@ -1,37 +1,40 @@
-class Solution 
-{
-    
-    boolean[][] memo ;
-    
+class Solution {
     public String longestPalindrome(String s) {
-        
-        int len = s.length();
-        
-        int maxLen = 0;
-        String res = "";
-        memo = new boolean[len][len];
-        
-        for (int left = len -1; left >= 0; left--){ // notice this goes backwards
-            for (int right = left; right < len; right++){
-                
-             if (s.charAt(left) == s.charAt(right)){
-                 
-                if (right - left <=2){
-                    memo[left][right] = true;
-                } else{
-                    memo[left][right] = memo[left + 1][right - 1]; 
+        String ans="";
+        for(int m=0;m<s.length();m++)
+        {
+            
+            int i=m;
+            int j=m;
+            //for odd length
+            while(i>=0&&j<s.length()&&s.charAt(i)==s.charAt(j))
+            {
+            
+                if(j-i+1>ans.length())
+                {
+                    ans=s.substring(i,j+1);
                 }
-             }
-    
-            if (memo[left][right]  && maxLen < right - left + 1) {
-                maxLen = right - left + 1;
-                res = s.substring(left, right + 1);
+                j++;
+                i--;
+            }
+            
+            i=m;
+            j=m+1;
+            // for even length
+             while(i>=0&&j<s.length()&&s.charAt(i)==s.charAt(j))
+            {
+            
+                if(j-i+1>ans.length())
+                {
+                    ans=s.substring(i,j+1);
                 }
-            }   
+                j++;
+                i--;
+            }
+            
             
         }
-        
-        return res;
+        return ans;
     }
-    
+ 
 }
