@@ -13,29 +13,20 @@
  *     }
  * }
  */
-class Solution 
-{
-    public int ans = 0;
-    
-    public void search(TreeNode node, int pre) 
+class Solution {
+    public int sumRootToLeaf(TreeNode root) 
     {
-      // node is a leaf node, return the sum of path from root to node
-        if (node.left == null && node.right == null) 
-          
-            // this.ans += pre << 1 | node.val; // also work
-            this.ans += pre * 2 + node.val; 
-            
-        if (node.left != null) // node.left is not None, recursively find the sum node to leaf
-            // search(node.left, pre << 1 | node.val); // also work
-            search(node.left, pre * 2 + node.val);
-        
-        if (node.right != null) // node.right is not None, recursively find the sum node to leaf
-            // search(node.right, pre << 1 | node.val); // also work
-            search(node.right, pre * 2 + node.val);
+        dfs(root, 0);
+        return ans;
     }
     
-    public int sumRootToLeaf(TreeNode root) {
-        search(root, 0);
-        return this.ans;
+    int ans = 0;
+    void dfs(TreeNode root, int val)
+    {
+        if(root == null) return;
+        val = val << 1 | root.val;
+        if(root.left == null && root.right == null) ans += val;
+        dfs(root.left, val);
+        dfs(root.right, val);
     }
 }
