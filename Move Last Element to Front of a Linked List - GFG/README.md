@@ -1,7 +1,6 @@
 # Move Last Element to Front of a Linked List
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">You are given the head of a Linked List. You have to move the last element to the front of the Linked List and return the list.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">You are given the head of a Linked List. You have to move the last element to the front of the Linked List and return the list.</span></p>
 
 <p>&nbsp;</p>
 
@@ -47,5 +46,4 @@ will remain the same.</span></pre>
 1 &lt;= N&nbsp;&lt;= 10<sup>5</sup><br>
 0 &lt;= Elements of List&nbsp;&lt;= 10<sup>9</sup><br>
 Sum of N over all test cases doesn't exceeds 10<sup>6</sup></span></p>
- <p></p>
-            </div>
+</div>
