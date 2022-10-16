@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.io.*;
 import java.util.*;
 
@@ -28,10 +28,13 @@ class Node
     
     public static void printList(Node node)
     {
-        while (node != null)
+        while (true)
         { 
-    		System.out.print(node.data + " ");
+    		System.out.print(node.data);
     		node = node.next; 
+    		if(node == null)
+    		    break;
+    		System.out.print(" ");
     	}  
     	System.out.println();
     }
@@ -54,6 +57,7 @@ class GFG {
         }
     }
 }
+
 // } Driver Code Ends
 
 
@@ -76,9 +80,8 @@ Node.printList(Node node);
 */
 
 class Solution {
-    public static Node moveToFront(Node head) 
-    {
-        if(head.next == null)
+    public static Node moveToFront(Node head) {
+         if(head.next == null)
         {
             return head;
         }
@@ -94,6 +97,7 @@ class Solution {
         head=last;
         
         return head;
+        // code here
     }
 }
         
