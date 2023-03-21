@@ -31,23 +31,24 @@ public class GFG {
 //User function Template for Java
 
 class Solution {
-    int getPairsCount(int[] arr, int n, int k) 
+    int getPairsCount(int[] arr, int n, int sum) 
     {
         // code here
-        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+        HashMap<Integer, Integer> m = new HashMap<>();
         int count = 0;
-        for(int i=0;i<n;i++)
+        for (int i = 0; i < n; i++) 
         {
-            if(map.containsKey(k-arr[i]))
+            if (m.containsKey(sum - arr[i])) 
             {
-                count += map.get(k-arr[i]);
+                count += m.get(sum - arr[i]);
             }
-            if(!map.containsKey(arr[i]))
+            if (m.containsKey(arr[i])) 
             {
-                map.put(arr[i],1);
-            }else
+                m.put(arr[i], m.get(arr[i]) + 1);
+            }
+            else 
             {
-                map.put(arr[i],map.get(arr[i])+1);
+                m.put(arr[i], 1);
             }
         }
         return count;
