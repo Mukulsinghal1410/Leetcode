@@ -31,16 +31,16 @@ public class GFG {
 //User function Template for Java
 
 class Solution {
-    int getPairsCount(int[] arr, int n, int sum) 
+    int getPairsCount(int[] arr, int n, int k) 
     {
         // code here
-        int prefixSum =0,count=0;
-        HashMap<Integer,Integer> map = new HashMap<>(); //<Elem,Freq>
+        int count=0;
+        HashMap<Integer,Integer> map = new HashMap<>();
         for(int i=0;i<n;i++)
         {
-            if(map.containsKey(sum-arr[i]))
+            if(map.containsKey(k-arr[i]))
             {
-                count += map.get(sum-arr[i]);
+                count += map.get(k-arr[i]);
             }
             if(map.containsKey(arr[i]))
             {
