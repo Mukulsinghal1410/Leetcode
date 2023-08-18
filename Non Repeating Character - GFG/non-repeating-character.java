@@ -34,25 +34,47 @@ class Driverclass
 class Solution
 {
     //Function to find the first non-repeating character in a string.
-    static char nonrepeatingCharacter(String S)
-    {
-        if(S == null || S.length() == 0)
-            return '$';
+    // static char nonrepeatingCharacter(String S)
+    // {
+    //     if(S == null || S.length() == 0)
+    //         return '$';
 
-        //Your code here
-        HashMap<Character,Integer> st = new HashMap<>();
-        for(int i=0;i<S.length();i++)
+    //     //Your code here
+    //     HashMap<Character,Integer> st = new HashMap<>();
+    //     for(int i=0;i<S.length();i++)
+    //     {
+    //         st.put(S.charAt(i),st.getOrDefault(S.charAt(i),0)+1);
+    //     }
+    //     for(int i=0; i<S.length(); i++)
+    //     {
+    //         if(st.get(S.charAt(i)) ==1)
+    //         {
+    //             return S.charAt(i);
+    //         }
+    //     }
+    //     return '$';
+    // }
+    static char nonrepeatingCharacter(String str)
+    {
+        int n = str.length();
+        if(str == null || str.length() == 0)
+            return '$';
+        
+        HashMap<Character, Integer> mp = new HashMap<>();
+        for(char ch : str.toCharArray()) 
         {
-            st.put(S.charAt(i),st.getOrDefault(S.charAt(i),0)+1);
+            mp.put(ch, mp.getOrDefault(ch, 0)+1);
+            //System.out.println(mp);
         }
-        for(int i=0; i<S.length(); i++)
+        for(int i=0; i<str.length(); i++)
         {
-            if(st.get(S.charAt(i)) ==1)
+            if(mp.get(str.charAt(i)) ==1)
             {
-                return S.charAt(i);
+                return str.charAt(i);
             }
         }
         return '$';
     }
+
 }
 
