@@ -36,18 +36,20 @@ public class Main {
 
 
 class Solution {
-    boolean hasArrayTwoCandidates(int arr[], int n, int x) 
+    boolean hasArrayTwoCandidates(int arr[], int n, int sum) 
     {
         // code here
-        int prefixSum =0;
-        HashMap<Integer,Integer> map = new HashMap<>(); //<PrefixSum,Freq>
-        for(int i=0;i<arr.length;i++)
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<n;i++)
         {
-            if(map.containsKey(x-arr[i]))
+            if(map.containsKey(sum-arr[i]))
             {
                 return true;
             }
-            map.put(arr[i],1);
+            else
+            {
+                map.put(arr[i],1);
+            }
         }
         return false;
     }
