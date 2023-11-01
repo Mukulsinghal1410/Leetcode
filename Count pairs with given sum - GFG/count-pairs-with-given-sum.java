@@ -30,19 +30,21 @@ public class GFG {
 
 //User function Template for Java
 
-class Solution {
+class Solution 
+{
     int getPairsCount(int[] arr, int n, int k) 
     {
         // code here
         HashMap<Integer,Integer> map = new HashMap<>();
-        
         int count = 0;
         for(int i=0;i<n;i++)
         {
-            if(map.containsKey(k-arr[i]))
+            int temp = k - arr[i];
+            if(map.containsKey(temp))
             {
-                count += map.get(k-arr[i]);
+                count += map.get(temp);
             }
+
             if(map.containsKey(arr[i]))
             {
                 map.put(arr[i],map.get(arr[i])+1);
