@@ -29,21 +29,21 @@ class Solution
 {
     int maxDistance(int arr[], int n)
     {
-        int maxD=0;
-        HashMap<Integer,Integer> map = new HashMap<>();  // [Element , Index];
-        for(int i=0; i<n; i++)
+        HashMap<Integer,Integer> mp = new HashMap<>(); // <element,FirstOccurenece>
+        int maxD = 0;
+        
+        for(int i=0;i<n;i++)
         {
-            if(!map.containsKey(arr[i]))
+            if(!mp.containsKey(arr[i]))
             {
-                map.put(arr[i],i);
+                mp.put(arr[i],i);
             }
-            else   
+            else
             {
-                maxD = Math.max(maxD, i - map.get(arr[i]));
+                maxD = Math.max(maxD , i - mp.get(arr[i]));
             }
         }
         return maxD;
-	// Your code here
-	
+        
     }
 }
