@@ -31,28 +31,29 @@ class GfG
 {
     int maxLen(int arr[], int n)
     {
-        HashMap<Integer,Integer> map = new HashMap<>(); //<PrefixSum ,FirstOccurence>
+        // Your code here
+        HashMap<Integer,Integer> map = new HashMap<>(); //<PrefixSum , FirstOccur>
         int prefixSum = 0;
         int maxlen = 0;
-
-        for(int i=0;i<arr.length;i++)
+        for(int i=0;i<n;i++)
         {
             prefixSum += arr[i];
-            if(prefixSum==0) 
+            if(prefixSum == 0)
             {
-                maxlen = i+1; // it means we get prefixsum=0 and got maxlen
+                maxlen = i+1;
             }
-            else{
+            else
+            {
                 if(map.containsKey(prefixSum))
                 {
-                    maxlen = Math.max(maxlen, i - map.get(prefixSum));
+                    maxlen = Math.max(maxlen, i-map.get(prefixSum));
                 }
-                else{
+                else
+                {
                     map.put(prefixSum,i);
                 }
             }
         }
         return maxlen;
-        // Your code here
     }
 }
